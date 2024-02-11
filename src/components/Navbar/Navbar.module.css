@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    padding: 1vw 2vw 0vw 2vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    font-family: flexa;
+    font-size: 1.8vw;
+}
+
+.links_container{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.link{
+    font-size: 1.2vw;
+    text-transform: uppercase;
+    font-family: flexa;
+    color:#E43D31;
+    text-decoration: none;
+}

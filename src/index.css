@@ -21,6 +21,14 @@
   font-display: fallback;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; 
+}
+
 *{
   padding: 0;
   margin: 0;
@@ -34,3 +42,4 @@ body{
   background-color: #ECE9E1;
   color:#E43D31;
 }
+
