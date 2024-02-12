@@ -15,12 +15,23 @@ import eleven from "../../images/eleven.webp";
 import twelve from "../../images/twelve.webp";
 import thirteen from "../../images/thirteen.webp";
 import fourteen from "../../images/fourteen.webp";
+import bottle from "../../images/bottle.avif";
+import SplitType from "split-type";
 
 const Hero = () => {
   const img_container = useRef(null);
+  const tagline = useRef(null);
   const line = useRef(null);
+  const para_one = useRef(null);
+  const para_two = useRef(null);
+  const para_three = useRef(null);
 
   useEffect(() => {
+    //split-type
+    const splitOne = new SplitType(para_one.current);
+    const splitTwo = new SplitType(para_two.current);
+    const splitThree = new SplitType(para_three.current);
+
     const tl = gsap.timeline();
 
     // loading line animation
@@ -44,6 +55,61 @@ const Hero = () => {
     let ctx = gsap.context(() => {
       gsap.fromTo("img", { zIndex: 0 }, { zIndex: 1, stagger: 0.1 });
     }, img_container.current);
+
+    // intro paragraphs animation
+
+    gsap.fromTo(
+      splitOne.lines,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        stagger: 0.1,
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+        ease: "expo.out",
+      }
+    );
+    gsap.fromTo(
+      splitTwo.lines,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        stagger: 0.1,
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+        ease: "expo.out",
+      }
+    );
+    gsap.fromTo(
+      splitThree.lines,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        stagger: 0.1,
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+        ease: "expo.out",
+      }
+    );
+
+    // tagline animation
+
+    gsap.fromTo(
+      tagline.current,
+      { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" },
+      { clipPath: "none", delay: 2 }
+    );
+
+    let ctx2 = gsap.context(() => {
+      gsap.fromTo(
+        "span",
+        { y: 1115 },
+        { y: 0, stagger: 0.2, duration: 1, ease: "power1.out" }
+      );
+    }, tagline.current);
   }, []);
 
   return (
@@ -74,27 +140,37 @@ const Hero = () => {
         </div>
       </div>
       <div className={styles.intro_container}>
-        <p>
+        <p ref={para_one}>
           We're a New York-based design studio—with roots in the
           Netherlands—specializing in designing consumer products and brands.
         </p>
-        <p>
+        <p ref={para_two}>
           From initial idea to final production, we work with you to craft
           products that blend both form and function with exceptional elegance.
           We design. We develop. We get it done—nicely.
         </p>
-        <p>
+        <p ref={para_three}>
           68 Jay Street, Suite 1006 Brooklyn, NY 11201 +1.347.546.7865
           studio@loketdesign.com
         </p>
       </div>
-      <div className={styles.tagline}>
+      <div ref={tagline} className={styles.tagline}>
         <span>I</span>
         <span>C</span>
         <span>O</span>
         <span>N</span>
         <span>I</span>
         <span>C</span>
+        <img
+          data-scroll
+          data-scroll-speed={0.3}
+          src={bottle}
+          alt="bottle"
+          className={styles.bottle}
+        />
+      </div>
+      <div className={styles.sub_tagline}>
+        <h3>FUNCTIONALISM</h3>
       </div>
       <div ref={line} className={styles.line}></div>
     </section>
